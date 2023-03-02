@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import styles from './addContactForm.module.scss';
 import { nanoid } from 'nanoid';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'redux/phoneBooksSlice';
 
-const MyForm = ({ onSubmit }) => {
+const MyForm = () => {
+  const dispatch = useDispatch();
+
   const [state, setState] = useState({ name: '', number: '' });
 
   const nameId = nanoid();
@@ -11,7 +14,7 @@ const MyForm = ({ onSubmit }) => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    onSubmit({ ...state });
+    dispatch(addContact({ ...state }));
     setState({ name: '', number: '' });
   };
 
@@ -59,7 +62,3 @@ const MyForm = ({ onSubmit }) => {
 };
 
 export default MyForm;
-
-MyForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};

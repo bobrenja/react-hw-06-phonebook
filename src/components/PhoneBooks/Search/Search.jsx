@@ -1,7 +1,12 @@
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { filterContact } from 'redux/phoneBooksSlice';
 import style from './Search.module.scss';
 
-const Search = ({ handleEnterInput }) => {
+const Search = () => {
+  const dispatch = useDispatch();
+  const handleEnterInput = ({ target }) => {
+    dispatch(filterContact(target.value));
+  };
   return (
     <div className={style.filter}>
       <label className={style.label}>Search contact</label>
@@ -16,7 +21,3 @@ const Search = ({ handleEnterInput }) => {
 };
 
 export default Search;
-
-Search.propTypes = {
-  handleEnterInput: PropTypes.func.isRequired,
-};
