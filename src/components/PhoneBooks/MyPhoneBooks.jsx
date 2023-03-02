@@ -12,7 +12,7 @@ const MyPhoneBooksForm = () => {
     <>
       <h1>Phonebook</h1>
       <MyForm />
-      <Search />
+      {isContact && <Search />}
       {isContact && <Contacts />}
     </>
   );
